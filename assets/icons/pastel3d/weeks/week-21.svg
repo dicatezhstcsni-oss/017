@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#FFC16F"/><stop offset="1" stop-color="#FF7F91"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  <path d="M58 24 C70 10,84 19,65 36 C60 28,58 24,58 24Z" fill="#79D9A7" opacity=".95"/><path d="M60 26 C68 25,73 23,79 18" stroke="#fff" stroke-width="2" opacity=".7" fill="none"/><path d="M70 25 C82 11,96 20,77 37 C72 29,70 25,70 25Z" fill="#79D9A7" opacity=".95"/><path d="M72 27 C80 26,85 24,91 19" stroke="#fff" stroke-width="2" opacity=".7" fill="none"/><path d="M50 37 C75 35,88 48,81 63 C74 79,55 92,43 99 C43 78,44 54,50 37Z" fill="url(#obj)" filter="url(#softShadow)"/><path d="M55 51 L76 50 M51 66 L67 64 M48 82 L60 77" stroke="#fff" stroke-width="3" opacity=".45" stroke-linecap="round"/><text x="64" y="104" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12" font-weight="800" fill="#47736D">21周 · 胡萝卜</text>
+</svg>

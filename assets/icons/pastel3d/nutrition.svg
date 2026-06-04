@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="能不能吃">
+  <defs>
+    <linearGradient id="g" x1="18" y1="14" x2="110" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE1C4"/><stop offset="1" stop-color="#FFBE86"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#6BAEA6" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="#FFF9F1"/>
+  <circle cx="36" cy="30" r="18" fill="#FFE1C4" opacity=".55"/>
+  <circle cx="96" cy="98" r="22" fill="#FFBE86" opacity=".20"/>
+  <g filter="url(#shadow)">
+    <circle cx="64" cy="64" r="46" fill="url(#g)"/>
+    <circle cx="64" cy="68" r="28" fill="white" opacity=".95"/><circle cx="64" cy="68" r="18" fill="#FFE8D5"/><path d="M36 34v54" stroke="#72B8AD" stroke-width="6" stroke-linecap="round"/><path d="M28 34v18M36 34v18M44 34v18" stroke="#72B8AD" stroke-width="4" stroke-linecap="round"/><path d="M92 34c8 12 8 28 0 40v16" stroke="#72B8AD" stroke-width="6" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

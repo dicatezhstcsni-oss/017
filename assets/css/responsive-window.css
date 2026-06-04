@@ -1,0 +1,933 @@
+/* =========================================================
+   响应式窗口适配补丁：手机全屏，电脑端自动变宽居中
+   目标：不改变原有功能，只覆盖固定 430px 手机壳限制
+   ========================================================= */
+:root{
+  --app-max-width: min(100vw, 1120px);
+  --app-side-gap: clamp(12px, 2vw, 24px);
+}
+
+html,body{
+  width:100%;
+  min-width:320px;
+  overflow-x:hidden;
+}
+
+.phone-container{
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  min-height:100svh;
+  margin:0 auto !important;
+  background:var(--background,#FFF8F9);
+}
+
+/* 主内容在大屏上适当留白，不再像手机一样贴边 */
+.main-content,
+.hero-section,
+.tools-section,
+.recommend-section,
+.content-section,
+.tab-content{
+  max-width:100%;
+}
+
+/* 所有固定二级页面跟随窗口宽度，而不是锁死 430px */
+.bottom-nav,
+.checkup-page,
+.food-page,
+.bag-page,
+.diet-page,
+.checkup-reminder-page,
+.preg-calendar-page,
+.food-v2-page,
+.wt-history-page,
+#hospitalTourPage,
+.music-world-page,
+.music-world-page .pm-player,
+.music-world-page .pm-modal{
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  left:50% !important;
+  right:auto !important;
+  margin:0 auto !important;
+}
+
+/* 保持原来的侧滑逻辑，但适配居中窗口 */
+.checkup-page,
+.food-page,
+.bag-page,
+.diet-page,
+.checkup-reminder-page,
+.preg-calendar-page,
+.food-v2-page,
+.wt-history-page{
+  transform:translateX(50%) translateX(100%) translateZ(0) !important;
+}
+.checkup-page.active,
+.food-page.active,
+.bag-page.active,
+.diet-page.active,
+.checkup-reminder-page.active,
+.preg-calendar-page.active,
+.food-v2-page.active,
+.wt-history-page.active{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+
+/* 弹窗、搜索面板、底部 Sheet 跟随应用窗口 */
+.global-search-panel{
+  width:calc(min(100vw, var(--app-max-width)) - 24px) !important;
+  max-width:min(720px, calc(var(--app-max-width) - 24px)) !important;
+}
+.food-detail-sheet,
+.food-v2-sheet,
+.wt-modal-content{
+  width:100% !important;
+  max-width:min(var(--app-max-width), 720px) !important;
+}
+
+/* 电脑端：页面像一个自适应网页窗口，内容更舒展 */
+@media (min-width:768px){
+  body{
+    padding:24px;
+    background:
+      radial-gradient(circle at top left, rgba(255,180,188,.35), transparent 32%),
+      linear-gradient(135deg,#fff0f2 0%,#fff8f9 48%,#f4fffb 100%) !important;
+  }
+  .phone-container{
+    min-height:calc(100svh - 48px);
+    border-radius:32px;
+    overflow:hidden;
+    box-shadow:0 24px 70px rgba(232,122,136,.20);
+    border:1px solid rgba(255,255,255,.75);
+  }
+  .header{
+    padding-left:clamp(18px,2.5vw,32px) !important;
+    padding-right:clamp(18px,2.5vw,32px) !important;
+  }
+  .hero-section,
+  .tools-section,
+  .recommend-section,
+  .content-section,
+  .tab-content,
+  .content-area,
+  .page-content{
+    padding-left:clamp(20px,3vw,40px) !important;
+    padding-right:clamp(20px,3vw,40px) !important;
+  }
+  .bottom-nav{
+    bottom:24px !important;
+    border-radius:0 0 32px 32px;
+    padding-left:clamp(20px,3vw,40px) !important;
+    padding-right:clamp(20px,3vw,40px) !important;
+  }
+
+  /* 大屏卡片/工具自动多列，避免只有窄手机布局 */
+  .tools-grid,
+  .tool-grid,
+  .feature-grid,
+  .recommend-grid,
+  .card-grid,
+  .food-v2-grid,
+  .checkup-grid,
+  .bag-grid,
+  .diet-grid{
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) !important;
+  }
+  .week-selector,
+  .tools-scroll,
+  .horizontal-scroll{
+    scroll-snap-type:x proximity;
+  }
+
+  /* 二级页面电脑端也有窗口边界 */
+  .checkup-page,
+  .food-page,
+  .bag-page,
+  .diet-page,
+  .checkup-reminder-page,
+  .preg-calendar-page,
+  .food-v2-page,
+  .wt-history-page,
+  #hospitalTourPage,
+  .music-world-page{
+    top:24px !important;
+    height:calc(100svh - 48px) !important;
+    border-radius:32px;
+    box-shadow:0 24px 70px rgba(232,122,136,.22);
+  }
+}
+
+/* 手机端：彻底占满屏幕，消除左右边框/白边 */
+@media (max-width:767px){
+  body{padding:0 !important;}
+  .phone-container{
+    max-width:100vw !important;
+    min-height:100svh;
+  }
+  .bottom-nav,
+  .checkup-page,
+  .food-page,
+  .bag-page,
+  .diet-page,
+  .checkup-reminder-page,
+  .preg-calendar-page,
+  .food-v2-page,
+  .wt-history-page,
+  #hospitalTourPage,
+  .music-world-page,
+  .music-world-page .pm-player,
+  .music-world-page .pm-modal{
+    max-width:100vw !important;
+  }
+  .global-search-panel{max-width:calc(100vw - 24px) !important;}
+}
+
+/* =========================================================
+   功能模块全面自适应补丁 v2
+   覆盖：主页工具、孕周详情、产检、饮食/食物、待产包、体重、胎动、孕期日历、音乐、VR、弹窗/底部面板
+   ========================================================= */
+:root{
+  --app-content-max: 1040px;
+  --app-pad: clamp(14px, 2.6vw, 36px);
+  --app-gap: clamp(10px, 1.8vw, 18px);
+}
+
+/* 图片、视频、画布、SVG 防止撑破容器 */
+img,svg,video,canvas{max-width:100%;height:auto;}
+button,input,select,textarea{max-width:100%;font:inherit;}
+
+/* 通用内容区：所有功能页都允许在电脑端舒展，手机端占满 */
+.main-content,
+.content-area,
+.page-content,
+.checkup-page-body,
+.food-list-section,
+.bag-content,
+.diet-content,
+.reminder-content,
+.preg-cal-content,
+.wt-history-page-content,
+.food-v2-main,
+.cr-body,
+.music-world-page .pm-page,
+#hospitalTourPage .vr-content{
+  width:100% !important;
+  max-width:var(--app-content-max) !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* 所有二级功能页统一使用动态视口高度，避免手机浏览器地址栏导致内容被截断 */
+.checkup-page,
+.food-page,
+.bag-page,
+.diet-page,
+.checkup-reminder-page,
+.preg-calendar-page,
+.food-v2-page,
+.wt-history-page,
+#hospitalTourPage,
+.music-world-page,
+.sd-pre-page{
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  min-width:0 !important;
+  height:100svh !important;
+  max-height:100svh !important;
+  overflow:hidden !important;
+}
+
+/* 顶栏/标题区：宽度变化时不挤爆 */
+.header-content,
+.checkup-page-header-top,
+.food-page-header-top,
+.bag-page-header-top,
+.diet-header-top,
+.reminder-header-top,
+.preg-cal-header-top,
+.wt-history-page-header,
+.cr-topbar,
+.food-v2-header,
+.music-world-page .pm-top,
+#hospitalTourPage .vr-header{
+  width:100%;
+  min-width:0;
+  gap:clamp(8px,1.8vw,16px) !important;
+}
+.search-box,
+.food-search-box,
+.food-v2-search,
+.checkup-field,
+.diet-week-row,
+.reminder-form-row,
+.preg-cal-overview-main,
+.wt-form-input-wrapper{min-width:0;}
+
+/* 通用网格：电脑多列，平板 2-3 列，手机自动收窄 */
+.tools-grid,
+.tool-grid,
+.feature-grid,
+.recommend-grid,
+.card-grid,
+.category-grid,
+.info-cards,
+.metrics-row,
+.progress-stats,
+.detail-grid,
+.core-indicators,
+.checkup-entry-grid,
+.checkup-form-grid,
+.checkup-grid,
+.checkup-actions,
+.bag-progress-overview,
+.diet-mini-grid,
+.reminder-mini-grid,
+.preg-cal-mini-grid,
+.preg-cal-actions,
+.kick-guide-grid,
+.scan-recognized-grid,
+.food-v2-list,
+.cr-form,
+.cr-hero-grid,
+.cr-mini-grid,
+.music-world-page .pm-grid,
+.music-world-page .pm-section-grid{
+  min-width:0;
+}
+
+/* 弹窗、底部抽屉、工具编辑器、详情页：跟随应用窗口，不再锁 430px */
+.tool-editor,
+.module-sheet,
+.food-detail-sheet,
+.food-v2-sheet,
+.wt-modal-content,
+.bag-detail-page,
+.sd-pre-page,
+.music-world-page .pm-section-panel,
+.music-world-page .pm-voice-panel,
+.music-world-page .pm-modal,
+.qc-video-window{
+  width:100% !important;
+  max-width:min(var(--app-max-width), 760px) !important;
+  min-width:0 !important;
+}
+.tool-editor,
+.module-sheet,
+.food-detail-sheet,
+.food-v2-sheet,
+.wt-modal-content{
+  left:50% !important;
+  right:auto !important;
+  transform:translateX(-50%) translateY(105%) !important;
+}
+.tool-editor.active,
+.module-sheet.active,
+.food-detail-overlay.active .food-detail-sheet,
+.food-v2-mask.active .food-v2-sheet,
+.wt-modal-overlay.active .wt-modal-content{
+  transform:translateX(-50%) translateY(0) !important;
+}
+.global-search-panel{
+  left:50% !important;
+  right:auto !important;
+  transform:translateX(-50%) translateY(-8px) !important;
+}
+.global-search-mask.active .global-search-panel,
+.global-search-panel.active{
+  transform:translateX(-50%) translateY(0) !important;
+}
+
+/* 横向滚动区域统一支持小屏滑动，电脑端可自然换行 */
+.week-selector,
+.content-tabs,
+.tab-nav,
+.bag-tabs,
+.diet-tabs,
+.food-v2-tabs,
+.checkup-subtabs,
+.sd-city-btn,
+.music-world-page .pm-tabs,
+.tools-section .tools-grid{
+  max-width:100%;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.week-selector::-webkit-scrollbar,
+.content-tabs::-webkit-scrollbar,
+.tab-nav::-webkit-scrollbar,
+.bag-tabs::-webkit-scrollbar,
+.diet-tabs::-webkit-scrollbar,
+.food-v2-tabs::-webkit-scrollbar,
+.checkup-subtabs::-webkit-scrollbar,
+.tools-section .tools-grid::-webkit-scrollbar{display:none;}
+
+/* 卡片内部文字不撑破，长标题自动省略/换行 */
+.tool-item,
+.category-card,
+.info-card,
+.metric-card,
+.checkup-card,
+.checkup-entry,
+.food-item,
+.food-v2-item,
+.item-row,
+.diet-card,
+.reminder-item,
+.preg-cal-detail-card,
+.wt-history-item,
+.kick-card,
+.scan-smart-card,
+.music-world-page .pm-card,
+.music-world-page .pm-list-row{
+  min-width:0;
+  overflow:hidden;
+}
+.tool-label,
+.category-card-title,
+.category-card-name,
+.food-item-name,
+.food-v2-name,
+.item-name,
+.detail-title,
+.guide-title,
+.track-name,
+.reminder-item-name,
+.preg-cal-section-title,
+.wt-history-title,
+.music-world-page .pm-card-title,
+.music-world-page .pm-list-title{
+  overflow-wrap:anywhere;
+}
+
+@media (min-width:768px){
+  /* 主页功能不再只横向滑动：电脑端自动铺成多列 */
+  .tools-section .tools-grid{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(92px,1fr)) !important;
+    gap:14px !important;
+    overflow:visible !important;
+  }
+  .tools-section .tool-item{
+    min-width:0 !important;
+    width:auto !important;
+    flex:auto !important;
+  }
+
+  /* 功能区常用布局：电脑端多列 */
+  .category-grid,
+  .info-cards,
+  .detail-grid,
+  .core-indicators,
+  .checkup-entry-grid,
+  .checkup-grid,
+  .bag-progress-overview,
+  .diet-mini-grid,
+  .reminder-mini-grid,
+  .preg-cal-mini-grid,
+  .kick-guide-grid,
+  .scan-recognized-grid,
+  .music-world-page .pm-grid{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important;
+    gap:var(--app-gap) !important;
+  }
+  .checkup-form-grid,
+  .cr-form{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+  }
+  .food-v2-list,
+  .food-list,
+  .item-main,
+  .reminder-timeline,
+  .wt-history-list,
+  .scan-record-list,
+  .music-world-page .pm-section-list{
+    max-width:100%;
+  }
+  .food-v2-list.food-v2-grid,
+  .food-list.grid,
+  .bag-tab-content.active,
+  .diet-list{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr)) !important;
+    gap:14px !important;
+  }
+
+  /* 大屏弹窗更像居中工作区 */
+  .tool-editor,
+  .module-sheet,
+  .food-detail-sheet,
+  .food-v2-sheet,
+  .wt-modal-content{
+    border-radius:28px 28px 0 0 !important;
+    max-height:82svh !important;
+    padding-left:clamp(18px,3vw,34px) !important;
+    padding-right:clamp(18px,3vw,34px) !important;
+  }
+  .bag-detail-page,
+  .sd-pre-page,
+  .music-world-page .pm-section-panel,
+  .music-world-page .pm-voice-panel,
+  .music-world-page .pm-modal{
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    top:24px !important;
+    height:calc(100svh - 48px) !important;
+    border-radius:32px !important;
+    overflow:hidden auto !important;
+    box-shadow:0 24px 70px rgba(232,122,136,.22);
+  }
+  .music-world-page .pm-section-panel,
+  .music-world-page .pm-voice-panel{
+    transform:translateX(50%) translateX(100%) !important;
+  }
+  .music-world-page .pm-section-panel.active,
+  .music-world-page .pm-voice-panel.active{
+    transform:translateX(-50%) !important;
+  }
+
+  /* VR/地图类：电脑端保留宽屏比例，控制按钮换行 */
+  .qy-map-shell,
+  .qy-vr-controls,
+  #hospitalTourPage .vr-controls{
+    max-width:100%;
+  }
+  .qy-vr-controls,
+  .qy-narrator-actions,
+  .action-row,
+  .preg-cal-actions,
+  .reminder-actions,
+  .kick-actions{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+  }
+}
+
+@media (max-width:767px){
+  :root{--app-pad:14px;--app-gap:10px;}
+  .main-content,
+  .content-area,
+  .page-content,
+  .checkup-page-body,
+  .bag-content,
+  .diet-content,
+  .reminder-content,
+  .preg-cal-content,
+  .food-v2-main,
+  .cr-body,
+  .music-world-page .pm-page{
+    max-width:100% !important;
+  }
+  .header-content{flex-wrap:nowrap;}
+  .date-badge,.sign-in-btn{flex-shrink:0;}
+  .search-box{min-width:0;}
+
+  /* 手机端两列/单列自适应，避免卡片过窄 */
+  .category-grid,
+  .info-cards,
+  .metrics-row,
+  .progress-stats,
+  .detail-grid,
+  .core-indicators,
+  .checkup-entry-grid,
+  .checkup-grid,
+  .bag-progress-overview,
+  .diet-mini-grid,
+  .reminder-mini-grid,
+  .preg-cal-mini-grid,
+  .kick-guide-grid,
+  .scan-recognized-grid,
+  .music-world-page .pm-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+  }
+  .checkup-form-grid,
+  .cr-form,
+  .reminder-form-row,
+  .diet-week-row,
+  .preg-cal-overview,
+  .wt-form-input-wrapper{
+    grid-template-columns:1fr !important;
+  }
+  .food-v2-list,
+  .food-list,
+  .bag-tab-content.active,
+  .diet-list,
+  .music-world-page .pm-section-list{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:10px !important;
+  }
+  .bottom-nav{padding-bottom:max(8px,env(safe-area-inset-bottom)) !important;}
+}
+
+@media (max-width:430px){
+  .header{padding-left:12px !important;padding-right:12px !important;}
+  .date-badge{display:none;}
+  .sign-in-btn{padding:8px 10px !important;font-size:11px !important;}
+  .hero-section,
+  .tools-section,
+  .recommend-section,
+  .content-section,
+  .tab-content,
+  .content-area,
+  .page-content,
+  .checkup-page-body,
+  .bag-content,
+  .diet-content,
+  .reminder-content,
+  .preg-cal-content,
+  .food-v2-main,
+  .cr-body,
+  .music-world-page .pm-page{
+    padding-left:12px !important;
+    padding-right:12px !important;
+  }
+  .category-grid,
+  .info-cards,
+  .detail-grid,
+  .core-indicators,
+  .checkup-entry-grid,
+  .checkup-grid,
+  .bag-progress-overview,
+  .diet-mini-grid,
+  .reminder-mini-grid,
+  .preg-cal-mini-grid,
+  .kick-guide-grid,
+  .scan-recognized-grid,
+  .music-world-page .pm-grid{
+    grid-template-columns:1fr 1fr !important;
+  }
+  .tool-editor-list,
+  .cr-form,
+  .checkup-form-grid,
+  .preg-cal-actions,
+  .reminder-actions,
+  .kick-actions,
+  .action-row{
+    grid-template-columns:1fr !important;
+  }
+}
+
+@media (max-width:360px){
+  .category-grid,
+  .info-cards,
+  .detail-grid,
+  .checkup-entry-grid,
+  .checkup-grid,
+  .bag-progress-overview,
+  .diet-mini-grid,
+  .reminder-mini-grid,
+  .preg-cal-mini-grid,
+  .music-world-page .pm-grid{
+    grid-template-columns:1fr !important;
+  }
+  .nav-label{font-size:10px !important;}
+  .nav-icon{transform:scale(.92);}
+}
+
+/* =========================================================
+   定向修复 v3：能不能吃/音乐天地滚动 + 全景导览自适应
+   说明：放在文件末尾，覆盖前面 overflow:hidden 与居中侧滑冲突
+   ========================================================= */
+
+/* 1) 能不能吃：恢复整页纵向滚动，解决列表不能下滑 */
+.food-v2-page.food-knowledge-page{
+  height:100svh !important;
+  max-height:100svh !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+  overscroll-behavior-y:contain;
+  background:#fff !important;
+}
+.food-v2-page.food-knowledge-page.active{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+.food-knowledge-list-wrap{
+  padding-bottom:max(42px, env(safe-area-inset-bottom)) !important;
+}
+.food-knowledge-cats,
+.food-knowledge-black,
+.food-knowledge-list-wrap{
+  width:100%;
+  max-width:var(--app-content-max);
+  margin-left:auto;
+  margin-right:auto;
+}
+.food-knowledge-item{
+  min-width:0;
+}
+.food-knowledge-item-main{
+  min-width:0;
+}
+.food-knowledge-badges{
+  flex-shrink:0;
+}
+
+/* 2) 音乐天地：恢复主页面滚动，并让播放器/弹层跟随窗口宽度 */
+.music-world-page{
+  left:50% !important;
+  right:auto !important;
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  height:100svh !important;
+  max-height:100svh !important;
+  transform:translateX(50%) translateX(100%) translateZ(0) !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+  background:#fff !important;
+}
+.music-world-page.active{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+.music-world-page .pm-page{
+  width:100% !important;
+  min-height:auto !important;
+  padding-bottom:calc(112px + env(safe-area-inset-bottom)) !important;
+}
+.music-world-page .pm-hero,
+.music-world-page .pm-quick,
+.music-world-page .pm-section,
+.music-world-page .pm-list,
+.music-world-page .pm-page > section,
+.music-world-page .pm-page > div:not(.pm-top):not(.pm-player){
+  max-width:var(--app-content-max);
+  margin-left:auto;
+  margin-right:auto;
+}
+.music-world-page .pm-player{
+  left:50% !important;
+  right:auto !important;
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  transform:translateX(-50%) !important;
+}
+.music-world-page .pm-section-panel,
+.music-world-page .pm-voice-panel,
+.music-world-page .pm-modal{
+  left:50% !important;
+  right:auto !important;
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  height:100svh !important;
+  max-height:100svh !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+.music-world-page .pm-section-panel,
+.music-world-page .pm-voice-panel{
+  transform:translateX(50%) translateX(100%) translateZ(0) !important;
+}
+.music-world-page .pm-section-panel.active,
+.music-world-page .pm-voice-panel.active{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+.music-world-page .pm-modal{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+.music-world-page .pm-modal-main{
+  min-height:auto !important;
+  height:auto !important;
+  max-width:var(--app-content-max);
+  margin-left:auto;
+  margin-right:auto;
+  padding-bottom:calc(34px + env(safe-area-inset-bottom)) !important;
+}
+
+/* 3) 全景导览：修复 left:50% 后 active 仍偏移的问题；电脑端变宽，手机端全屏 */
+#hospitalTourPage{
+  left:50% !important;
+  right:auto !important;
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  height:100svh !important;
+  max-height:100svh !important;
+  transform:translateX(50%) translateX(100%) translateZ(0) !important;
+  overflow:hidden !important;
+}
+#hospitalTourPage.active{
+  transform:translateX(-50%) translateZ(0) !important;
+}
+#hospitalTourPage .hvt-shell,
+#hospitalTourPage .hvt-pano,
+#hospitalTourPage .hvt-layout-page,
+#hospitalTourPage .hvt-layout-detail{
+  width:100% !important;
+  max-width:100% !important;
+}
+#hospitalTourPage .hvt-panel,
+#hospitalTourPage .hvt-layout-scenes-panel{
+  max-height:min(68svh, 620px) !important;
+  overflow:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+#hospitalTourPage .hvt-scene-grid{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) !important;
+  gap:12px !important;
+}
+#hospitalTourPage .hvt-layout-list{
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr)) !important;
+  gap:12px !important;
+}
+#hospitalTourPage .hvt-layout-card{
+  min-width:0 !important;
+}
+#hospitalTourPage .hvt-layout-card p,
+#hospitalTourPage .hvt-layout-card strong,
+#hospitalTourPage .hvt-title,
+#hospitalTourPage .hvt-sub,
+#hospitalTourPage .hvt-layout-vr-bottom span{
+  overflow-wrap:anywhere;
+}
+#hospitalTourPage .hvt-layout-hotspots{
+  inset:clamp(78px, 12svh, 96px) clamp(64px, 8vw, 90px) clamp(92px, 13svh, 120px) clamp(12px, 2vw, 24px) !important;
+}
+
+@media (min-width:768px){
+  .food-v2-page.food-knowledge-page,
+  .music-world-page,
+  #hospitalTourPage{
+    top:24px !important;
+    height:calc(100svh - 48px) !important;
+    max-height:calc(100svh - 48px) !important;
+    border-radius:32px !important;
+    box-shadow:0 24px 70px rgba(232,122,136,.22) !important;
+  }
+  .music-world-page .pm-player{
+    bottom:24px !important;
+    border-radius:0 0 32px 32px !important;
+  }
+  .music-world-page .pm-quick{
+    grid-template-columns:repeat(auto-fit,minmax(92px,1fr)) !important;
+  }
+  .music-world-page .pm-hero{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .food-knowledge-cats{
+    grid-template-columns:repeat(auto-fit,minmax(96px,1fr)) !important;
+  }
+  .food-knowledge-list{
+    display:grid !important;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr)) !important;
+    gap:12px !important;
+  }
+  .food-knowledge-item{
+    padding:13px !important;
+    border:1px solid #f1f1f1 !important;
+  }
+  #hospitalTourPage .hvt-layout-entry{
+    left:clamp(18px,3vw,40px) !important;
+    right:auto !important;
+    width:min(520px, calc(100% - 120px)) !important;
+  }
+  #hospitalTourPage .hvt-toolbar,
+  #hospitalTourPage .hvt-layout-vr-toolbar{
+    right:clamp(14px,2vw,26px) !important;
+  }
+}
+
+@media (max-width:767px){
+  .food-v2-page.food-knowledge-page,
+  .music-world-page,
+  #hospitalTourPage{
+    top:0 !important;
+    height:100dvh !important;
+    max-height:100dvh !important;
+    border-radius:0 !important;
+  }
+  .music-world-page .pm-player{
+    bottom:0 !important;
+  }
+  .music-world-page .pm-hero{
+    grid-template-columns:1fr !important;
+  }
+  .music-world-page .pm-quick{
+    grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+    overflow-x:auto !important;
+  }
+  #hospitalTourPage .hvt-layout-list{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+}
+
+@media (max-width:430px){
+  .food-knowledge-title{font-size:20px !important;}
+  .food-knowledge-cats{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:14px 6px !important;}
+  .food-knowledge-item{align-items:flex-start !important;}
+  .food-knowledge-badges{grid-template-columns:1fr !important;}
+  .music-world-page .pm-tabs{gap:14px !important;font-size:18px !important;}
+  #hospitalTourPage .hvt-layout-entry{left:12px !important;right:70px !important;bottom:92px !important;}
+}
+
+/* =========================================================
+   定向修复 v4：能不能吃二级详情点击后不显示
+   原因：responsive-window.css 前面的 .food-v2-sheet 使用了 !important
+   把底部详情抽屉一直压在屏幕外；此处用更精确的 active 规则覆盖。
+   ========================================================= */
+.food-v2-mask{
+  z-index:5200 !important;
+}
+.food-v2-mask.active{
+  opacity:1 !important;
+  visibility:visible !important;
+  pointer-events:auto !important;
+}
+.food-v2-sheet,
+.food-v2-sheet.food-knowledge-sheet{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:0 !important;
+  width:100% !important;
+  max-width:var(--app-max-width) !important;
+  max-height:min(76svh, 680px) !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+  z-index:5201 !important;
+  background:#fff !important;
+  transform:translateX(-50%) translateY(105%) translateZ(0) !important;
+  visibility:visible !important;
+}
+.food-v2-sheet.active,
+.food-v2-sheet.food-knowledge-sheet.active{
+  transform:translateX(-50%) translateY(0) translateZ(0) !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+.food-knowledge-item,
+.food-v2-item{
+  cursor:pointer !important;
+  touch-action:manipulation !important;
+  pointer-events:auto !important;
+}
+@media (min-width:768px){
+  .food-v2-mask{
+    background:rgba(30,18,22,.34) !important;
+  }
+  .food-v2-sheet,
+  .food-v2-sheet.food-knowledge-sheet{
+    bottom:24px !important;
+    border-radius:28px !important;
+    box-shadow:0 24px 70px rgba(0,0,0,.18) !important;
+  }
+}
+@media (max-width:767px){
+  .food-v2-sheet,
+  .food-v2-sheet.food-knowledge-sheet{
+    bottom:0 !important;
+    border-radius:22px 22px 0 0 !important;
+  }
+}

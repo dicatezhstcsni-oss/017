@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#FFF3B0"/><stop offset="1" stop-color="#FFE0A3"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  <ellipse cx="64" cy="60" rx="20" ry="28" fill="url(#obj)" filter="url(#softShadow)" transform="rotate(-18 64 60)"/><ellipse cx="56" cy="48" rx="7" ry="12" fill="#fff" opacity=".48" transform="rotate(-25 56 48)"/><text x="64" y="104" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12" font-weight="800" fill="#47736D">4周 · 小米粒</text>
+</svg>

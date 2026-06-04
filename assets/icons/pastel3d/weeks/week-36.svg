@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#FF94A8"/><stop offset="1" stop-color="#FF5B7A"/></linearGradient><linearGradient id="rind" x1="37" y1="30" x2="91" y2="95"><stop offset="0" stop-color="#A5EFD3"/><stop offset="1" stop-color="#4FC59F"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  <path d="M35 79 A37 37 0 0 1 93 35 L98 92 Z" fill="url(#rind)" filter="url(#softShadow)"/><path d="M44 76 A29 29 0 0 1 89 43 L88 83 Z" fill="url(#obj)"/><ellipse cx="52" cy="60" rx="2.6" ry="4.2" fill="#5B5060" opacity=".65"/><ellipse cx="61" cy="70" rx="2.6" ry="4.2" fill="#5B5060" opacity=".65"/><ellipse cx="70" cy="60" rx="2.6" ry="4.2" fill="#5B5060" opacity=".65"/><ellipse cx="79" cy="70" rx="2.6" ry="4.2" fill="#5B5060" opacity=".65"/><text x="64" y="104" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12" font-weight="800" fill="#47736D">36周 · 小西瓜</text>
+</svg>

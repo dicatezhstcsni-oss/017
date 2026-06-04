@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#D4F6B5"/><stop offset="1" stop-color="#88DDA4"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  <path d="M43 70 C28 45,56 22,78 37 C99 52,87 88,59 88 C50 88,47 79,43 70Z" fill="url(#obj)" filter="url(#softShadow)"/><path d="M50 55 C61 42,75 45,82 57" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".45" fill="none"/><text x="64" y="104" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12" font-weight="800" fill="#47736D">6周 · 小扁豆</text>
+</svg>

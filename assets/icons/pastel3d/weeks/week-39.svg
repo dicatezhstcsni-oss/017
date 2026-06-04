@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#DDF8F1"/><stop offset="1" stop-color="#FFE7EF"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  <ellipse cx="64" cy="63" rx="32" ry="37" fill="url(#obj)" filter="url(#softShadow)"/><circle cx="64" cy="49" r="18" fill="#FFD8C4"/><path d="M54 49 Q64 61 74 49" stroke="#D89083" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="57" cy="45" r="2.5" fill="#605366"/><circle cx="71" cy="45" r="2.5" fill="#605366"/><path d="M41 80 C55 68,75 70,88 80" stroke="#fff" stroke-width="7" opacity=".58" fill="none" stroke-linecap="round"/><text x="64" y="104" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="12" font-weight="800" fill="#47736D">39周 · 新生宝宝</text>
+</svg>

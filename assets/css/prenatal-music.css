@@ -1,0 +1,202 @@
+/* 音乐天地侧滑页 */
+.music-world-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  background: #fff;
+  z-index: 2100;
+  transform: translateX(100%) translateZ(0);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: -10px 0 28px rgba(0,0,0,.10);
+}
+.music-world-page.active { transform: translateX(0) translateZ(0); }
+.pm-tab-placeholder { padding: 28px 16px; text-align:center; color:#999; }
+.pm-tab-placeholder button { border:none; border-radius:999px; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; padding:12px 20px; font-weight:800; }
+.music-world-page .pm-page { margin: 0; background: #fff; min-height: 100vh; color: var(--text-dark); padding-bottom: 86px; }
+.music-world-page .pm-top { position: sticky; top: 0; z-index: 15; background: rgba(255,255,255,.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); padding: 12px 16px 10px; border-bottom: 1px solid rgba(0,0,0,.035); }
+.music-world-page .pm-titlebar { display:flex; align-items:center; justify-content:space-between; margin-bottom: 16px; }
+.music-world-page .pm-back, .music-world-page .pm-search { width:36px; height:36px; border:none; border-radius:50%; background:#fff; font-size:24px; display:flex; align-items:center; justify-content:center; color:#222; }
+.music-world-page .pm-title { font-size:23px; font-weight:900; letter-spacing:-.5px; }
+.music-world-page .pm-tabs { display:flex; gap:18px; align-items:center; font-size:20px; font-weight:800; }
+.music-world-page .pm-tab { color:#777; position:relative; padding-bottom:10px; cursor:pointer; }
+.music-world-page .pm-tab.active { color:#222; }
+.music-world-page .pm-tab.active::after { content:''; position:absolute; left:50%; bottom:0; width:26px; height:5px; transform:translateX(-50%); border-radius:999px; background:var(--primary); }
+.music-world-page .pm-hero { padding: 18px 16px 12px; display:grid; grid-template-columns: 1fr 2fr; gap:12px; }
+.music-world-page .pm-card { border:none; text-align:left; border-radius:18px; padding:18px; min-height:118px; overflow:hidden; position:relative; box-shadow:0 8px 26px rgba(255,142,157,.14); cursor:pointer; }
+.music-world-page .pm-card-small { background:linear-gradient(135deg,#ffe2e9,#fff0f3); }
+.music-world-page .pm-card-wide { background:linear-gradient(135deg,#f4e9ff,#e8fbff); }
+.music-world-page .pm-card h3 { position:relative; z-index:1; font-size:21px; line-height:1.15; margin:0 0 8px; font-weight:900; }
+.music-world-page .pm-card p { position:relative; z-index:1; margin:0; font-size:13px; font-weight:700; color:#333; }
+.music-world-page .pm-card .pm-bubble { position:absolute; right:-10px; bottom:-12px; font-size:64px; opacity:.35; }
+.music-world-page .pm-quick { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; padding: 8px 16px 18px; }
+.music-world-page .pm-quick-item { text-align:center; font-size:12px; color:#555; white-space:nowrap; cursor:pointer; }
+.music-world-page .pm-quick-icon { width:52px; height:52px; margin:0 auto 8px; border-radius:50%; background:linear-gradient(135deg,#e7fff9,#fff4fa); display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 8px 18px rgba(0,0,0,.05); }
+.music-world-page .pm-history { display:flex; align-items:center; justify-content:center; gap:26px; padding: 16px; color:var(--primary); font-size:15px; font-weight:900; background:linear-gradient(180deg,#fff7fa,#fff); border-radius:0 0 20px 20px; box-shadow:0 8px 22px rgba(0,0,0,.035); }
+.music-world-page .pm-history span { cursor:pointer; }
+.music-world-page .pm-section { padding: 18px 16px; background:#fff; border-radius:20px; margin-top:10px; box-shadow:0 -2px 12px rgba(0,0,0,.025); }
+.music-world-page .pm-section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.music-world-page .pm-section-title { font-size:20px; font-weight:900; }
+.music-world-page .pm-section-more { border:none; background:transparent; color:#bbb; font-size:13px; font-weight:800; cursor:pointer; }
+.music-world-page .pm-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+.music-world-page .pm-album { cursor:pointer; min-width:0; }
+.music-world-page .pm-cover { aspect-ratio: 1/1; border-radius:13px; background:linear-gradient(135deg,#ffedf2,#e7fbff); display:flex; align-items:center; justify-content:center; font-size:42px; position:relative; overflow:hidden; box-shadow:0 6px 14px rgba(0,0,0,.08); background-size:cover; background-position:center; }
+.music-world-page .pm-cover::after { content:'▶ ' attr(data-plays); position:absolute; left:7px; bottom:7px; border-radius:999px; padding:3px 8px; background:rgba(40,40,40,.58); color:white; font-size:11px; font-weight:800; }
+.music-world-page .pm-album-title { margin-top:8px; font-size:13px; line-height:1.35; font-weight:700; color:#444; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.music-world-page .pm-player { position:fixed; left:50%; bottom:0; transform:translateX(-50%); width:100%; max-width:430px; z-index:2200; background:rgba(255,255,255,.86); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-top:1px solid rgba(0,0,0,.06); box-shadow:0 -8px 30px rgba(0,0,0,.10); }
+.music-world-page .pm-mini { display:flex; align-items:center; gap:10px; padding:9px 16px; }
+.music-world-page .pm-mini-cover { width:44px; height:44px; border-radius:8px; background:linear-gradient(135deg,#ffe4ec,#e8f8ff); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; background-size:cover; background-position:center; }
+.music-world-page .pm-mini-name { flex:1; font-size:14px; color:#555; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.music-world-page .pm-mini-btn, .music-world-page .pm-list-btn { border:none; background:transparent; color:#9b9aaa; font-size:30px; line-height:1; }
+.music-world-page .pm-mini-btn { width:46px; height:46px; border-radius:50%; border:2px solid #d8d6e2; display:flex; align-items:center; justify-content:center; font-size:18px; padding-left:2px; }
+.music-world-page .pm-modal { position:fixed; inset:0; z-index:2300; display:none; max-width:430px; margin:0 auto; }
+.music-world-page .pm-modal.active { display:block; }
+.music-world-page .pm-modal-bg { position:absolute; inset:0; background-size:cover; background-position:center; filter:blur(24px); transform:scale(1.12); opacity:.7; }
+.music-world-page .pm-modal-bg::after { content:''; position:absolute; inset:0; background:rgba(255,248,250,.54); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+.music-world-page .pm-modal-main { position:relative; z-index:1; min-height:100%; padding:18px 22px 24px; display:flex; flex-direction:column; align-items:center; }
+.music-world-page .pm-modal-head { width:100%; display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
+.music-world-page .pm-close { border:none; background:rgba(255,255,255,.44); border-radius:50%; width:38px; height:38px; font-size:24px; }
+.music-world-page .pm-now-title { text-align:center; max-width:260px; font-size:18px; font-weight:900; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.music-world-page .pm-disc-wrap { width:245px; height:245px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:16px auto 22px; background:rgba(255,255,255,.45); box-shadow:0 22px 55px rgba(50,30,60,.22); }
+.music-world-page .pm-disc { width:218px; height:218px; border-radius:50%; background:radial-gradient(circle at center,#fff 0 8%,#333 8% 11%,transparent 11%), conic-gradient(from 0deg,#222,#555,#111,#666,#222); position:relative; display:flex; align-items:center; justify-content:center; animation:pmSpin 8s linear infinite; animation-play-state:paused; overflow:hidden; }
+.music-world-page .pm-disc.playing { animation-play-state:running; }
+.music-world-page .pm-disc-cover { width:128px; height:128px; border-radius:50%; background:linear-gradient(135deg,#ffdde7,#dff8ff); display:flex; align-items:center; justify-content:center; font-size:60px; box-shadow:inset 0 0 0 8px rgba(255,255,255,.5); background-size:cover; background-position:center; }
+@keyframes pmSpin { to { transform:rotate(360deg); } }
+.music-world-page .pm-meta { text-align:center; color:#666; font-size:13px; margin-bottom:18px; }
+.music-world-page .pm-range { width:100%; accent-color:var(--primary); }
+.music-world-page .pm-time-row { width:100%; display:flex; justify-content:space-between; color:#777; font-size:12px; margin:6px 0 16px; }
+.music-world-page .pm-control-row { display:flex; align-items:center; gap:16px; margin-bottom:16px; }
+.music-world-page .pm-main-play { width:66px; height:66px; border-radius:50%; border:none; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; font-size:24px; box-shadow:0 10px 28px rgba(255,142,157,.38); }
+.music-world-page .pm-ctrl { width:44px; height:44px; border:none; border-radius:50%; background:rgba(255,255,255,.48); font-size:18px; }
+.music-world-page .pm-speed-row { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+.music-world-page .pm-speed { border:none; border-radius:999px; padding:8px 12px; background:rgba(255,255,255,.55); color:#666; font-weight:800; }
+.music-world-page .pm-speed.active { color:#fff; background:linear-gradient(135deg,var(--primary),var(--primary-light)); }
+.music-world-page .pm-source-tip { margin-top:auto; font-size:11px; color:#666; line-height:1.6; text-align:center; background:rgba(255,255,255,.42); border-radius:12px; padding:10px; }
+.music-world-page .pm-open-source { color:var(--primary); font-weight:900; }
+.music-world-page .pm-section-panel, .music-world-page .pm-voice-panel { position:fixed; inset:0; z-index:2250; background:#fff; transform:translateX(100%); transition:.32s cubic-bezier(.4,0,.2,1); overflow-y:auto; }
+.music-world-page .pm-section-panel.active, .music-world-page .pm-voice-panel.active { transform:translateX(0); }
+.music-world-page .pm-section-page, .music-world-page .pm-voice-page { min-height:100%; background:#fff; padding-bottom:84px; }
+.music-world-page .pm-section-page-head { position:sticky; top:0; z-index:3; display:flex; align-items:center; gap:12px; padding:14px 16px; background:rgba(255,255,255,.94); backdrop-filter:blur(16px); border-bottom:1px solid rgba(0,0,0,.04); }
+.music-world-page .pm-section-back { width:36px; height:36px; border:none; border-radius:50%; background:#fff; font-size:26px; }
+.music-world-page .pm-section-page-title { font-size:20px; font-weight:900; }
+.music-world-page .pm-section-page-sub { font-size:12px; color:#999; margin-top:2px; }
+.music-world-page .pm-section-list { padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+.music-world-page .pm-list-row { display:flex; align-items:center; gap:12px; background:#fff8fa; border-radius:16px; padding:12px; box-shadow:0 5px 14px rgba(0,0,0,.04); cursor:pointer; }
+.music-world-page .pm-list-cover { width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg,#ffedf2,#e7fbff); display:flex; align-items:center; justify-content:center; font-size:28px; background-size:cover; background-position:center; flex-shrink:0; }
+.music-world-page .pm-list-main { flex:1; min-width:0; }
+.music-world-page .pm-list-title { font-size:15px; font-weight:900; color:#333; }
+.music-world-page .pm-list-meta { margin-top:4px; font-size:12px; color:#888; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.music-world-page .pm-list-play { color:var(--primary); font-size:12px; font-weight:900; }
+.music-world-page .pm-voice-body { padding:16px; }
+.music-world-page .pm-voice-step { display:flex; gap:12px; padding:16px; margin-bottom:12px; border-radius:18px; background:#fff8fa; box-shadow:0 5px 16px rgba(255,142,157,.10); }
+.music-world-page .pm-voice-num { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; flex-shrink:0; }
+.music-world-page .pm-voice-step h4 { margin:0 0 6px; font-size:16px; }
+.music-world-page .pm-voice-step p { margin:0 0 10px; color:#777; font-size:13px; line-height:1.6; }
+.music-world-page .pm-voice-btn { border:none; border-radius:999px; padding:10px 14px; background:#fff; color:var(--primary); font-weight:900; box-shadow:0 4px 12px rgba(0,0,0,.05); }
+.music-world-page .pm-voice-btn.primary { color:#fff; background:linear-gradient(135deg,var(--primary),var(--primary-light)); }
+.music-world-page .pm-voice-select { width:100%; border:1px solid rgba(255,142,157,.25); border-radius:12px; padding:10px; background:#fff; }
+.music-world-page .pm-voice-result { margin-top:12px; padding:14px; border-radius:16px; background:#f4fffb; color:#4b8b71; font-size:13px; line-height:1.7; }
+@media (max-width:375px) { .music-world-page .pm-title { font-size:21px; } .music-world-page .pm-grid { gap:10px; } .music-world-page .pm-disc-wrap { width:220px; height:220px; } .music-world-page .pm-disc { width:196px; height:196px; } }
+
+/* === 修复：迷你播放条不再固定悬浮在屏幕中间，而是作为音乐页内容随页面滚动 === */
+.music-world-page .pm-page { padding-bottom: 0 !important; }
+.music-world-page .pm-player {
+  position: sticky !important;
+  left: auto !important;
+  bottom: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 430px !important;
+  margin: 18px auto 0 !important;
+  z-index: 20 !important;
+  background: #fff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: 1px solid rgba(0,0,0,.08) !important;
+  box-shadow: 0 -6px 22px rgba(0,0,0,.08) !important;
+}
+
+/* === 修复：播放详情页毛玻璃层改为不透明，不再透出底层页面 === */
+.music-world-page .pm-modal-bg {
+  opacity: 1 !important;
+  filter: blur(22px) !important;
+}
+.music-world-page .pm-modal-bg::after {
+  background: rgba(255, 248, 250, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+.music-world-page .pm-modal-main {
+  background: rgba(255, 248, 250, 0.96) !important;
+}
+.music-world-page .pm-close,
+.music-world-page .pm-ctrl,
+.music-world-page .pm-speed,
+.music-world-page .pm-source-tip {
+  background: #fff !important;
+}
+
+/* === 二次修复：播放详情/专辑列表/爸妈原声均使用独立全屏层，进入后不再看到下方音乐列表 === */
+.music-world-page.pm-overlay-open .pm-page,
+.music-world-page.pm-overlay-open .pm-player {
+  visibility: hidden !important;
+}
+.music-world-page .pm-modal.active,
+.music-world-page .pm-section-panel.active,
+.music-world-page .pm-voice-panel.active {
+  visibility: visible !important;
+}
+.music-world-page .pm-modal {
+  background: #fff8fa !important;
+  overflow: hidden !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+}
+.music-world-page .pm-modal-main {
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch;
+}
+.music-world-page .pm-section-panel,
+.music-world-page .pm-voice-panel {
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  background: #fff !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch;
+}
+.music-world-page .pm-section-page,
+.music-world-page .pm-voice-page {
+  background: #fff !important;
+  min-height: 100dvh !important;
+}
+.music-world-page .pm-list-btn {
+  cursor: pointer;
+}
+
+/* === 三次修复：内容不足一屏时禁止空白下拉；只有内容超过屏幕才允许滚动 === */
+.music-world-page.pm-no-scroll,
+.music-world-page .pm-modal-main.pm-no-scroll,
+.music-world-page .pm-section-panel.pm-no-scroll,
+.music-world-page .pm-voice-panel.pm-no-scroll {
+  overflow-y: hidden !important;
+  overscroll-behavior: none !important;
+}
+.music-world-page .pm-section-page,
+.music-world-page .pm-voice-page {
+  min-height: auto !important;
+  padding-bottom: 18px !important;
+}
+.music-world-page .pm-section-panel,
+.music-world-page .pm-voice-panel {
+  overflow-x: hidden !important;
+}

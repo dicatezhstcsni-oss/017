@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#6ABCAF" flood-opacity=".24"/></filter>
+    <linearGradient id="bg" x1="18" y1="14" x2="108" y2="112"><stop offset="0" stop-color="#EFFFFB"/><stop offset=".55" stop-color="#D9F7EF"/><stop offset="1" stop-color="#FFE8F0"/></linearGradient>
+    <radialGradient id="gloss" cx="36" cy="31" r="46"><stop offset="0" stop-color="#fff" stop-opacity=".90"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="obj" x1="30" y1="24" x2="94" y2="98"><stop offset="0" stop-color="#FFD1DD"/><stop offset="1" stop-color="#BFEFE4"/></linearGradient><linearGradient id="hair" x1="47" y1="23" x2="84" y2="73"><stop offset="0" stop-color="#755B74"/><stop offset="1" stop-color="#A77AA2"/></linearGradient><linearGradient id="dress" x1="42" y1="55" x2="92" y2="106"><stop offset="0" stop-color="#FFB7C8"/><stop offset="1" stop-color="#C8F3E8"/></linearGradient>
+  </defs>
+  <rect x="14" y="12" width="100" height="100" rx="32" fill="url(#bg)" filter="url(#softShadow)"/>
+  <circle cx="42" cy="36" r="31" fill="url(#gloss)"/>
+  
+  <path d="M45 54 C38 31,55 20,69 25 C85 30,90 47,82 66 C71 62,57 63,45 54Z" fill="url(#hair)" filter="url(#softShadow)"/>
+  <circle cx="64" cy="47" r="18" fill="#FFD8C4"/>
+  <circle cx="58" cy="45" r="2.3" fill="#5C5366"/><circle cx="70" cy="45" r="2.3" fill="#5C5366"/>
+  <path d="M58 55 Q64 60 71 55" stroke="#C57E84" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M43 101 C45 72,55 60,68 61 C83 62,93 77,94 101 Z" fill="url(#dress)" filter="url(#softShadow)"/>
+  <circle cx="75" cy="82" r="18" fill="#FFE8EF" opacity=".88"/>
+  <path d="M58 82 C64 92,80 93,89 83" stroke="#fff" stroke-width="5" opacity=".65" fill="none" stroke-linecap="round"/>
+  <text x="64" y="115" text-anchor="middle" font-family="Arial,Microsoft YaHei,sans-serif" font-size="13" font-weight="800" fill="#47736D">妈妈视角</text>
+</svg>

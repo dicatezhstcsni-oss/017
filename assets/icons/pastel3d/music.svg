@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="音乐天地">
+  <defs>
+    <linearGradient id="g" x1="18" y1="14" x2="110" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E2D8FF"/><stop offset="1" stop-color="#BCA5FF"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#6BAEA6" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="#FCFAFF"/>
+  <circle cx="36" cy="30" r="18" fill="#E2D8FF" opacity=".55"/>
+  <circle cx="96" cy="98" r="22" fill="#BCA5FF" opacity=".20"/>
+  <g filter="url(#shadow)">
+    <circle cx="64" cy="64" r="46" fill="url(#g)"/>
+    <path d="M76 30v46a12 12 0 1 1-8-11V42l-30 7v34a12 12 0 1 1-8-11V42z" fill="white" opacity=".96"/><path d="M76 30l-38 9" stroke="#8E75F0" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>
